@@ -9,12 +9,16 @@ An advanced automation suite for creating luxury media backdrops and logo cards.
 
 prism-wallpapers/
 ├── collections/
-│   ├── networks/          # Network brand assets (logos, cards, backdrops)
-│   └── companies/         # Company brand assets
-├── scripts/
-│   ├── backdrop_T2.py     # Advanced perspective-warped backdrops
-│   └── logo_cards.py      # Precision logo card and gradient mesh generator
-└── README.md
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── scripts/
+    ├── backdrop_T1.py
+    ├── backdrop_T1_flat.py
+    ├── backdrop_T2.py
+    ├── backdrop_T2_flat.py
+    ├── logo_cards.py
+    └── logo_pull.py
 
 
 ---
