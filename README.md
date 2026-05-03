@@ -101,7 +101,7 @@ prism-wallpapers/
 
 ---
 
-🎨 Tool 1: logo_cards.py
+## 🎨 Tool 1: logo_cards.py
 
 This script places cropped, maximum-scale logos onto background cards. It features an integrated Design Hotfix Registry for precise positional nudges and scale corrections, alongside advanced linear, radial, and multi-point mesh gradient generators.
 ⚙️ Designer Customizations (Code Tweaks)
@@ -126,11 +126,11 @@ DENSITY_BOOST = 1.18      # Size increase modifier for thin/sparse logos
 python3 logo_cards.py --source <networks|companies|both> --bg "<background-spec>"
 ```
 📋 Background Configuration Options (--bg)
-1. Solid Color
+# 1. Solid Color
 ```Bash
 python3 logo_cards.py --source both --bg "0d0d11"
 ```
-2. Linear Gradient (with Rotation)
+# 2. Linear Gradient (with Rotation)
 
 Format: linear:HEX1:HEX2[:ANGLE]
 
@@ -138,7 +138,7 @@ Example:
 ```Bash
 python3 logo_cards.py --source both --bg "linear:151515:282828:45"
 ```
-3. Radial Gradient (with Custom Center)
+# 3. Radial Gradient (with Custom Center)
 
 Center coordinates are expressed as decimal percentages (0.0 to 1.0).
 
@@ -149,7 +149,7 @@ Example:
 ```Bash
 python3 logo_cards.py --source both --bg "radial:24242c:0f0f13:0.35:0.35"
 ```
-4. Dual Radial Pseudo-Mesh (Luxury Double Pool)
+# 4. Dual Radial Pseudo-Mesh (Luxury Double Pool)
 
 Renders two overlapping radial color cores blending perfectly into a common outer background.
 
@@ -159,8 +159,8 @@ Example:
 ```Bash
 python3 logo_cards.py --source both --bg "dual:2d1d2d:231a3a:0e0914:0.3:0.5:0.7:0.5"
 ```
-🖼️ Tool 2: backdrop_T2.py
-
+## 🖼️ Tool 2: backdrop_T2.py
+Lets use backdrop_T2.py for example, you can use any of the 4 provided scripts.
 Creates mixed portrait and landscape grid wallpapers complete with custom perspective warping, depth of field effects, and thematic overlay gradients.
 ⚙️ Advanced Layout & Perspective Customization
 
@@ -187,6 +187,18 @@ BLUR_FALLOFF = 1.4   # Exponential rate of blur increase from focus center
 ```Bash
 python3 backdrop_T2.py --id <TMDB_ID> --type <network|provider|company|genre>
 ```
+Example:
+```Bash
+python3 backdrop_T2.py --id 213 --type network          # This for Netflix
+
+python3 backdrop_T2.py --id 49 8304 --type network      # two IDs for multiples, This will mix HBO with HBO max
+
+python3 backdrop_T2.py --id 41077 --type company        # this one is for a A24, a company/production studio, the --type must be company
+
+python3 backdrop_T2.py --id 28 --type genre             # the type here is genre, so the ID has to be genre specific 
+```
+You'll more IDs in the tmdb_reference_ids.txt file
+
 🔧 Overriding Specific Logos (Design Hotfixes)
 
 If a specific logo needs manual tuning due to an outlier shape, edit the DESIGN_HOTFIXES registry in logo_cards.py:
