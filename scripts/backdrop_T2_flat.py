@@ -845,19 +845,39 @@ def main():
     elif args.type in ("company", "production_company"):
         subfolder = "companies"
         api_type = "company"
+    elif args.type == "provider":
+        subfolder = "providers"
+        api_type = "provider"
     else:
         subfolder = "genres"
         api_type = "genre"
 
-    url = f"https://api.themoviedb.org/3/{api_type}/{single_id}"
-    params = {"api_key": TMDB_API_KEY}
-    try:
-        r = requests.get(url, params=params, timeout=10)
-        r.raise_for_status()
-        data = r.json()
-        brand_name = data.get("name") or data.get("title") or f"unknown-{single_id}"
-    except Exception:
+    # Fix: Providers do not have a direct ID endpoint on TMDB.
+    # We query the watch providers lists to resolve the correct name.
+    if api_type == "provider":
         brand_name = f"unknown-{single_id}"
+        try:
+            for endpoint in ("/watch/providers/tv", "/watch/providers/movie"):
+                r = requests.get(f"https://api.themoviedb.org/3{endpoint}", params={"api_key": TMDB_API_KEY, "watch_region": "US"}, timeout=10)
+                if r.status_code == 200:
+                    providers = r.json().get("results", [])
+                    match = next((p for p in providers if p.get("provider_id") == single_id), None)
+                    if match:
+                        brand_name = match.get("provider_name")
+                        break
+        except Exception:
+            pass
+    else:
+        # Networks and Companies use standard endpoints
+        url = f"https://api.themoviedb.org/3/{api_type}/{single_id}"
+        params = {"api_key": TMDB_API_KEY}
+        try:
+            r = requests.get(url, params=params, timeout=10)
+            r.raise_for_status()
+            data = r.json()
+            brand_name = data.get("name") or data.get("title") or f"unknown-{single_id}"
+        except Exception:
+            brand_name = f"unknown-{single_id}"
 
     slug = re.sub(r'[^a-z0-9]+', '-', brand_name.lower()).strip('-')
     

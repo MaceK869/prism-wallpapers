@@ -145,10 +145,10 @@ Excellent for curating network collections.
 | :--- | :--- |
 | 8 | Netflix |
 | 350 | Apple TV+ |
-| 384 | HBO / Max |
+| 1899 | HBO / Max |
 | 337 | Disney+ |
 | 9 | Amazon Prime |
-| 531 | Paramount+ |
+| 2303 | Paramount+ |
 | 15 | Hulu |
 | 386 | Peacock |
 | 37 | Showtime |

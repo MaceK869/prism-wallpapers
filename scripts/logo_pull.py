@@ -36,15 +36,44 @@ def slugify(text):
     return text.strip('-')
 
 def get_brand_name(id_type, tmdb_id):
-    url = f"https://api.themoviedb.org/3/{id_type}/{tmdb_id}"
-    params = {"api_key": TMDB_API_KEY}
+    if id_type == "network":
+        api_type = "network"
+    elif id_type in ("company", "production_company"):
+        api_type = "company"
+    elif id_type == "provider":
+        api_type = "provider"
+    else:
+        api_type = "genre"
+
+    brand_name = f"unknown-{tmdb_id}"
+
+    # Robust Name Lookup
     try:
-        r = requests.get(url, params=params, timeout=10)
-        r.raise_for_status()
-        data = r.json()
-        return data.get("name") or data.get("title") or f"unknown-{tmdb_id}"
+        if api_type == "provider":
+            # Providers don't have a direct endpoint, so we scan the provider lists
+            for endpoint in ("/watch/providers/tv", "/watch/providers/movie"):
+                r = requests.get(
+                    f"https://api.themoviedb.org/3{endpoint}", 
+                    params={"api_key": TMDB_API_KEY, "watch_region": "US"}, 
+                    timeout=10
+                )
+                if r.status_code == 200:
+                    providers = r.json().get("results", [])
+                    match = next((p for p in providers if p.get("provider_id") == tmdb_id), None)
+                    if match:
+                        brand_name = match.get("provider_name")
+                        break
+        else:
+            # Networks and Companies use standard endpoints
+            url = f"https://api.themoviedb.org/3/{api_type}/{tmdb_id}"
+            r = requests.get(url, params={"api_key": TMDB_API_KEY}, timeout=10)
+            if r.status_code == 200:
+                data = r.json()
+                brand_name = data.get("name") or data.get("title") or f"unknown-{tmdb_id}"
     except Exception:
-        return f"unknown-{tmdb_id}"
+        pass
+
+    return brand_name
 
 def are_images_similar(img1, img2, threshold=12.0):
     """
@@ -174,12 +203,20 @@ def download_logos(tmdb_id, id_type, max_logos):
     name = get_brand_name(id_type, tmdb_id)
     slug = slugify(name)
     
-    subfolder = "networks" if id_type == "network" else "companies"
+    if id_type == "network":
+        subfolder = "networks"
+    elif id_type == "company":
+        subfolder = "companies"
+    elif id_type == "provider":
+        subfolder = "providers"
+    else:
+        subfolder = "genres"
+        
     brand_folder = BASE_DIR / subfolder / f"{tmdb_id}-{slug}"
     
+    # Rest of your original logo_pull logic continues here...
     color_dir = brand_folder / "logos" / "color"
     white_dir = brand_folder / "logos" / "white"
-    
     color_dir.mkdir(parents=True, exist_ok=True)
     white_dir.mkdir(parents=True, exist_ok=True)
 
@@ -268,9 +305,9 @@ def download_logos(tmdb_id, id_type, max_logos):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--id", type=int, nargs="+", required=True)
-    ap.add_argument("--type", choices=["network", "company"], required=True)
+    ap.add_argument("--type", choices=["network", "company", "provider"], required=True)
     ap.add_argument("--max", type=int, default=MAX_LOGOS)
     args = ap.parse_args()
 
     for i in args.id:
-        download_logos(i, "network" if args.type == "network" else "company", args.max)
+        download_logos(i, args.type, args.max)

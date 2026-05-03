@@ -68,8 +68,16 @@ for ID in "${IDS[@]}"; do
   $PY_CMD "$ROOT_DIR/scripts/backdrop_T1.py" --id "$ID" --type "$TYPE"
 
   echo ""
-  echo "── 3. Generating T2 Backdrops..."
+  echo "── 3. Generating T1 Flat Backdrops..."
+  $PY_CMD "$ROOT_DIR/scripts/backdrop_T1_flat.py" --id "$ID" --type "$TYPE"
+
+  echo ""
+  echo "── 4. Generating T2 Backdrops..."
   $PY_CMD "$ROOT_DIR/scripts/backdrop_T2.py" --id "$ID" --type "$TYPE"
+
+  echo ""
+  echo "── 5. Generating T2 Flat Backdrops..."
+  $PY_CMD "$ROOT_DIR/scripts/backdrop_T2_flat.py" --id "$ID" --type "$TYPE"
 
   echo ""
   echo " ✓ Done with ID: $ID"
