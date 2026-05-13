@@ -37,7 +37,7 @@ jobs:
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
           chmod +x generate.sh
-          ./generate.sh
+          ./generate.sh trending curated
 
 
       - name: Clean Python cache folders
