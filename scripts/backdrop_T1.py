@@ -30,9 +30,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Retrieve keys safely from environment variables
-TMDB_API_KEY = os.getenv("417998af17473ea8ef3b19c68a615fd3")
-FANART_API_KEY = os.getenv("5b243b09c645baab020e2578ea3986a7")
-MDBLIST_API_KEY = os.getenv("yeqkqyi8pslkld55o2i77ahs6")
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+FANART_API_KEY = os.getenv("FANART_API_KEY")
+MDBLIST_API_KEY = os.getenv("MDBLIST_API_KEY")
 
 TMDB_ID         = None
 ID_TYPE         = None
