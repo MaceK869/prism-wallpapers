@@ -27,6 +27,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install pillow requests
+          pip install numpy
 
       - name: Generate collection backdrops
         env:
