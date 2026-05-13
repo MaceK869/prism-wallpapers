@@ -36,8 +36,8 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
-          run: chmod +x generate.sh
-          run: ./generate.sh
+          chmod +x generate.sh
+          ./generate.sh
 
 
       - name: Clean Python cache folders
