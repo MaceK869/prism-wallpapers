@@ -36,7 +36,7 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
-          python3 -B scripts/backdrop_T1.py 
+          python3 -B generate.sh
 
 
       - name: Clean Python cache folders
