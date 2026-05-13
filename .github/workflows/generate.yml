@@ -38,6 +38,8 @@ jobs:
         run: |
           chmod +x generate.sh
           ./generate.sh trending curated
+          ./generate.sh upcoming curated
+          ./generate.sh popular curated
 
 
       - name: Clean Python cache folders
