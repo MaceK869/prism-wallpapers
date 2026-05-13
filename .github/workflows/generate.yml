@@ -40,6 +40,7 @@ jobs:
           ./generate.sh trending curated
           ./generate.sh upcoming curated
           ./generate.sh popular curated
+          ./generate.sh top-rated curated
 
 
       - name: Clean Python cache folders
