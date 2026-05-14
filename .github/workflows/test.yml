@@ -36,7 +36,8 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
-          python3 backdrops_T2.py --url "snoak/trakt-s-trending-shows"
+          chmod +x generate.sh
+          ./generate.sh --url "snoak/trakt-s-trending-shows"
 
 
       - name: Clean Python cache folders
