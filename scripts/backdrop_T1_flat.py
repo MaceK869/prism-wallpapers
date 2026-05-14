@@ -264,7 +264,7 @@ def _fetch_label(tmdb_id, id_type):
                     break
         elif id_type == "genre":
             all_g = (_tmdb("/genre/movie/list", {"language": "pl-PL"}).get("genres", []) +
-                     _tmdb("/genre/tv/list",    {"language": "en-PL"}).get("genres", []))
+                     _tmdb("/genre/tv/list",    {"language": "pl-PL"}).get("genres", []))
             name = next((g["name"] for g in all_g if g["id"] == tmdb_id), "")
         else:
             name = ""
