@@ -292,7 +292,7 @@ def _parse_mdblist_url(url):
 def fetch_mdblist_items(url, count, sort=None):
     username, slug = _parse_mdblist_url(url)
     label = re.sub(r"[^\w]+", "_", slug.strip().lower()).strip("_") or f"{username}_{slug}"
-    key = {"apikey": MDBLIST_API_KEY}
+    key = {"apikey": yeqkqyi8pslkld55o2i77ahs6}
 
     print(f"  Fetching MDBList: {username}/{slug} …")
     try:
