@@ -36,7 +36,6 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
-          chmod +x generate.sh
           python3 backdrops_T2.py --url "snoak/trakt-s-trending-shows"
 
 
