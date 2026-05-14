@@ -37,7 +37,7 @@ jobs:
           FANART_API_KEY: ${{ secrets.FANART_API_KEY }}
         run: |
           chmod +x generate.sh
-          ./generate.sh --url "snoak/trakt-s-trending-shows"
+          python3 scripts/backdrops_T2_flat.py --url "snoak/trakt-s-trending-shows"
 
 
       - name: Clean Python cache folders
