@@ -120,7 +120,7 @@ def _pull_tv(extra, count):
     items = []
     for page in range(1, 6):
         data = _tmdb("/discover/tv", {"sort_by": "popularity.desc",
-                                      "page": page, "language": "en-US", **extra})
+                                      "page": page, "language": "pl-PL", **extra})
         for item in data.get("results", []):
             if item.get("backdrop_path") or item.get("poster_path"):
                 items.append(("tv", item))
@@ -133,7 +133,7 @@ def _pull_movies(extra, count):
     items = []
     for page in range(1, 6):
         data = _tmdb("/discover/movie", {"sort_by": "popularity.desc",
-                                         "page": page, "language": "en-US", **extra})
+                                         "page": page, "language": "pl-PL", **extra})
         for item in data.get("results", []):
             if item.get("backdrop_path") or item.get("poster_path"):
                 items.append(("movie", item))
@@ -263,8 +263,8 @@ def _fetch_label(tmdb_id, id_type):
                     name = match.get("provider_name", "")
                     break
         elif id_type == "genre":
-            all_g = (_tmdb("/genre/movie/list", {"language": "en-US"}).get("genres", []) +
-                     _tmdb("/genre/tv/list",    {"language": "en-US"}).get("genres", []))
+            all_g = (_tmdb("/genre/movie/list", {"language": "pl-PL"}).get("genres", []) +
+                     _tmdb("/genre/tv/list",    {"language": "pl-PL"}).get("genres", []))
             name = next((g["name"] for g in all_g if g["id"] == tmdb_id), "")
         else:
             name = ""
