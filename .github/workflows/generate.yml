@@ -40,8 +40,14 @@ jobs:
           ./generate.sh trending curated
           ./generate.sh upcoming curated
           ./generate.sh popular curated
-          ./generate.sh top-rated curated
+          ./generate.sh top_rated curated
           ./generate.sh 213 network
+          ./generate.sh 49 network
+          ./generate.sh 337 network
+          ./generate.sh 1024 network
+          ./generate.sh 2552 network
+          ./generate.sh 4330 network
+          ./generate.sh 453 network
 
 
       - name: Clean Python cache folders
