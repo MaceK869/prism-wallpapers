@@ -43,7 +43,7 @@ jobs:
           ./generate.sh top_rated curated
           ./generate.sh 213 network
           ./generate.sh 49 network
-          ./generate.sh 337 network
+          ./generate.sh 2739 network
           ./generate.sh 1024 network
           ./generate.sh 2552 network
           ./generate.sh 4330 network
