@@ -32,7 +32,7 @@ load_dotenv()
 # Retrieve keys safely from environment variables
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 FANART_API_KEY = os.getenv("FANART_API_KEY")
-MDBLIST_API_KEY = os.getenv("yeqkqyi8pslkld55o2i77ahs6")
+MDBLIST_API_KEY = os.getenv("MDBLIST_API_KEY")
 
 # -- Defaults (Can be overwritten via CLI)
 TMDB_ID = None      # Default TMDB ID to process if CLI arg is omitted
