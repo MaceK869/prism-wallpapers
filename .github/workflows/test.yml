@@ -39,8 +39,8 @@ jobs:
         run: |
 
           python3 scripts/backdrop_T2_flat.py --url "snoak/trakt-s-trending-shows"
-          python3 scripts/backdrop_T2_flat.py --url "garycrawfordgc/latest-tv-shows"
-          python3 scripts/backdrop_T2_flat.py --url "silpherion/top-watched-tv-shows-of-the-week-60"
+          python3 scripts/backdrop_T2.py --url "garycrawfordgc/latest-tv-shows"
+          python3 scripts/backdrop_T1_flat.py --url "silpherion/top-watched-tv-shows-of-the-week-60"
 
 
       - name: Clean Python cache folders
