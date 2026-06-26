@@ -48,6 +48,15 @@ jobs:
           ./generate.sh 2552 network
           ./generate.sh 4330 network
           ./generate.sh 453 network
+          ./generate.sh 9648 genre
+          ./generate.sh 35 genre
+          ./generate.sh 16 genre
+          ./generate.sh 53 genre
+          ./generate.sh 27 genre
+          ./generate.sh 18 genre
+          ./generate.sh 28 genre
+          ./generate.sh 80 genre
+          ./generate.sh 878 genre
 
 
       - name: Clean Python cache folders
